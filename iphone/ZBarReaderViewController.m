@@ -341,8 +341,7 @@ AVSessionPresetForUIVideoQuality (UIImagePickerControllerQualityType quality)
         UIViewAutoresizingFlexibleWidth |
         UIViewAutoresizingFlexibleHeight;
 
-    if(showsZBarControls ||
-       self.parentViewController.modalViewController == self)
+    if(showsZBarControls)
     {
         autoresize |= UIViewAutoresizingFlexibleBottomMargin;
         r.size.height -= 54;
