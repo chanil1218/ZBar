@@ -244,8 +244,12 @@ static inline CGFloat rotationForInterfaceOrientation (int orient)
             [CAMediaTimingFunction functionWithName:
                 kCAMediaTimingFunctionEaseInEaseOut]];
     }
-    else
-        [CATransaction setDisableActions: YES];
+    else {
+        // removing implicit animation(setDisableActions) is not enough. remove explicit animation either.
+        // [?] but why it should be applied to preview instead of self.view is not known.
+        [preview removeAllAnimations];
+        [CATransaction setDisableActions:YES];
+    }
 
     [super layoutSubviews];
     fpsView.frame = CGRectMake(bounds.size.width - 80, bounds.size.height - 32,
